@@ -1,0 +1,172 @@
+{
+  "vehicles": [
+    {
+      "serialNumber": 1,
+      "name": "BYD Song L EV",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 251781,
+      "totalPriceCNY": 251781
+    },
+    {
+      "serialNumber": 2,
+      "name": "BYD Yuan PLUS",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 125670,
+      "totalPriceCNY": 125670
+    },
+    {
+      "serialNumber": 3,
+      "name": "BYD Yuan UP",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 108656,
+      "totalPriceCNY": 108656
+    },
+    {
+      "serialNumber": 4,
+      "name": "BMW IX1",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 215850,
+      "totalPriceCNY": 215850
+    },
+    {
+      "serialNumber": 5,
+      "name": "BMW IX3",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 291516,
+      "totalPriceCNY": 291516
+    },
+    {
+      "serialNumber": 6,
+      "name": "Benz EQE SUV",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 387020,
+      "totalPriceCNY": 387020
+    },
+    {
+      "serialNumber": 7,
+      "name": "Benz EQB",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 259989,
+      "totalPriceCNY": 259989
+    },
+    {
+      "serialNumber": 8,
+      "name": "Benz EQA",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 207943,
+      "totalPriceCNY": 207943
+    },
+    {
+      "serialNumber": 9,
+      "name": "Toyota bZ3",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 130675,
+      "totalPriceCNY": 130675
+    },
+    {
+      "serialNumber": 10,
+      "name": "Nissan X-Trail",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 170430,
+      "totalPriceCNY": 170430
+    },
+    {
+      "serialNumber": 11,
+      "name": "Nissan ARIYA",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 148791,
+      "totalPriceCNY": 148791
+    },
+    {
+      "serialNumber": 12,
+      "name": "Li L6",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 256285,
+      "totalPriceCNY": 256285
+    },
+    {
+      "serialNumber": 13,
+      "name": "Li L8",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 325846,
+      "totalPriceCNY": 325846
+    },
+    {
+      "serialNumber": 14,
+      "name": "Li MEGA",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 548042,
+      "totalPriceCNY": 548042
+    },
+    {
+      "serialNumber": 15,
+      "name": "Zeekr 001",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 276003,
+      "totalPriceCNY": 276003
+    },
+    {
+      "serialNumber": 16,
+      "name": "Zeekr 007",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 234867,
+      "totalPriceCNY": 234867
+    },
+    {
+      "serialNumber": 17,
+      "name": "Zeekr 7X",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 279906,
+      "totalPriceCNY": 279906
+    },
+    {
+      "serialNumber": 18,
+      "name": "Tesla Model 3",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 283409,
+      "totalPriceCNY": 283409
+    },
+    {
+      "serialNumber": 19,
+      "name": "Tesla Model Y",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 302426,
+      "totalPriceCNY": 302426
+    },
+    {
+      "serialNumber": 20,
+      "name": "VW ID.4 X",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 213336,
+      "totalPriceCNY": 213336
+    },
+    {
+      "serialNumber": 21,
+      "name": "VW ID.6 CROZZ",
+      "exteriorColor": "White",
+      "quantity": 1,
+      "unitPriceCNY": 234867,
+      "totalPriceCNY": 234867
+    }
+  ]
+}
