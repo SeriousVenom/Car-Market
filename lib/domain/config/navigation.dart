@@ -1,8 +1,11 @@
+import 'package:car_market/data/models/vehicle_model.dart';
 import 'package:car_market/domain/repositories/main/main_repository.dart';
 import 'package:car_market/screens/catalog/bloc/catalog_bloc.dart';
 import 'package:car_market/screens/catalog/catalog_screen.dart';
 import 'package:car_market/screens/home/bloc/home_bloc.dart';
 import 'package:car_market/screens/home/home_screen.dart';
+import 'package:car_market/screens/product/bloc/product_bloc.dart';
+import 'package:car_market/screens/product/product_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -26,6 +29,14 @@ final GoRouter appRouter = GoRouter(
         child: const CatalogScreen(),
       ),
     ),
+    GoRoute(
+      name: 'product',
+      path: '/product',
+      builder: (context, state) => BlocProvider(
+        create: (context) => ProductBloc(mainRepository: GetIt.I<MainRepository>())..add(const ProductInitEvent()),
+        child: ProductScreen(vehicle: state.extra as VehicleModel),
+      ),
+    ),
     // GoRoute(
     //   name: 'auth',
     //   path: '/auth',
@@ -43,4 +54,5 @@ class AppNavigation {
   static void back() => appRouter.pop();
   static void toHome() => appRouter.pushReplacement('/home');
   static void toCatalog() => appRouter.push('/catalog');
+  static void toProduct(VehicleModel vehicle) => appRouter.push('/product', extra: vehicle);
 }

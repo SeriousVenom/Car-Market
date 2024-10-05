@@ -74,9 +74,7 @@ class CatalogScreen extends StatelessWidget {
                         itemBuilder: (context, index) {
                           VehicleModel vehicle = state.filteredVehicleList[index];
                           return ProductCardW(
-                            title: vehicle.name,
-                            price: vehicle.totalPriceCNY,
-                            image: vehicle.image,
+                            vehicle: vehicle,
                           );
                         },
                       ),
