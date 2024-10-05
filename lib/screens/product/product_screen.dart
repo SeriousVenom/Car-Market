@@ -1,3 +1,4 @@
+import 'package:car_market/components/widgets/app_bar.dart';
 import 'package:car_market/data/models/vehicle_model.dart';
 import 'package:car_market/screens/product/bloc/product_bloc.dart';
 import 'package:flutter/material.dart';
@@ -12,8 +13,9 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(vehicle.name),
+      appBar: MainAppBar(
+        title: vehicle.name,
+        backButton: true,
       ),
       body: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
         return SingleChildScrollView(

@@ -4,18 +4,19 @@ import 'package:car_market/domain/config/navigation.dart';
 import 'package:flutter/material.dart';
 
 class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const MainAppBar({super.key, required this.title});
+  const MainAppBar({super.key, required this.title, this.backButton = false});
   final String title;
+  final bool backButton;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Text(title),
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: backButton,
       actions: [
         const TextButton(
           onPressed: AppNavigation.toHome,
-          child: const Text(AppLocalization.mainTitle, style: AppTextStyles.mainStyle),
+          child: Text(AppLocalization.mainTitle, style: AppTextStyles.mainStyle),
         ),
         TextButton(
           onPressed: () {},
