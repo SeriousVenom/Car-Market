@@ -17,4 +17,25 @@ class Assets {
   static const String fontsRobotoSlabVariableFontWght = 'assets/fonts/RobotoSlab-VariableFont_wght.ttf';
   static const String fontsRobotoThin = 'assets/fonts/Roboto-Thin.ttf';
   static const String fontsRobotoThinItalic = 'assets/fonts/Roboto-ThinItalic.ttf';
+  static const String imagesBMWIX1 = 'assets/images/BMW IX1.jpg';
+  static const String imagesBMWIX3 = 'assets/images/BMW IX3.jpg';
+  static const String imagesBYDSongLEV = 'assets/images/BYD Song L EV.jpg';
+  static const String imagesBYDYuanPLUS = 'assets/images/BYD Yuan PLUS.jpg';
+  static const String imagesBYDYuanUP = 'assets/images/BYD Yuan UP.jpg';
+  static const String imagesBenzEQA = 'assets/images/Benz EQA.jpg';
+  static const String imagesBenzEQB = 'assets/images/Benz EQB.jpg';
+  static const String imagesBenzEQESUV = 'assets/images/Benz EQE SUV.jpg';
+  static const String imagesLiL6 = 'assets/images/Li L6.jpg';
+  static const String imagesLiL8 = 'assets/images/Li L8.jpg';
+  static const String imagesLiMEGA = 'assets/images/Li MEGA.jpg';
+  static const String imagesNissanARIYA = 'assets/images/Nissan ARIYA.jpg';
+  static const String imagesNissanXTrail = 'assets/images/Nissan X-Trail.jpg';
+  static const String imagesTeslaModel3 = 'assets/images/Tesla Model 3.jpg';
+  static const String imagesTeslaModelY = 'assets/images/Tesla Model Y.jpg';
+  static const String imagesToyotabZ3 = 'assets/images/Toyota bZ3.jpg';
+  static const String imagesVWID4X = 'assets/images/VW ID.4 X.jpg';
+  static const String imagesVWID6CROZZ = 'assets/images/VW ID.6 CROZZ.jpg';
+  static const String imagesZeekr001 = 'assets/images/Zeekr 001.jpg';
+  static const String imagesZeekr007 = 'assets/images/Zeekr 007.jpg';
+  static const String imagesZeekr7X = 'assets/images/Zeekr 7X.jpg';
 }

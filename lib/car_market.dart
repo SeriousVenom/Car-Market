@@ -11,6 +11,13 @@ class CarMarket extends StatelessWidget {
       localizationsDelegates: const [
         DefaultCupertinoLocalizations.delegate,
       ],
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.white,
+          brightness: Brightness.light,
+        ),
+        useMaterial3: true,
+      ),
       // supportedLocales: [
       //   const Locale('en', 'US'),
       //   const Locale('ru', ''),

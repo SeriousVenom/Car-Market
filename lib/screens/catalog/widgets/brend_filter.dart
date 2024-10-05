@@ -4,29 +4,37 @@ import 'package:car_market/screens/catalog/bloc/catalog_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SortDropdownW extends StatefulWidget {
-  final SortType selectedSort;
+class BrandFilterDropdownW extends StatefulWidget {
+  final String selectedBrand;
 
-  const SortDropdownW({super.key, required this.selectedSort});
+  const BrandFilterDropdownW({super.key, required List<String> brands, required this.selectedBrand}) : _brands = brands;
+
+  final List<String> _brands;
 
   @override
-  State<SortDropdownW> createState() => _SortDropdownWState();
+  State<BrandFilterDropdownW> createState() => _BrandFilterDropdownWState();
 }
 
-class _SortDropdownWState extends State<SortDropdownW> {
+class _BrandFilterDropdownWState extends State<BrandFilterDropdownW> {
   OverlayEntry? _overlayEntry;
-  SortType _selectedOption = SortType.defaultOrder;
   bool _isHovered = false;
   bool _isDropdownHovered = false;
+  String? _selectedBrand;
 
   @override
-  void didUpdateWidget(covariant SortDropdownW oldWidget) {
+  void didUpdateWidget(covariant BrandFilterDropdownW oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.selectedSort != oldWidget.selectedSort) {
+    if (widget.selectedBrand != oldWidget.selectedBrand) {
       setState(() {
-        _selectedOption = widget.selectedSort;
+        _selectedBrand = widget.selectedBrand;
       });
     }
+  }
+
+  @override
+  void initState() {
+    _selectedBrand = widget.selectedBrand;
+    super.initState();
   }
 
   void _showOverlay(BuildContext context) {
@@ -58,11 +66,7 @@ class _SortDropdownWState extends State<SortDropdownW> {
               color: Colors.white,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: [
-                  _buildOption(SortType.defaultOrder),
-                  _buildOption(SortType.priceAscending),
-                  _buildOption(SortType.priceDescending),
-                ],
+                children: widget._brands.map((brand) => _buildBrandOption(brand)).toList(),
               ),
             ),
           ),
@@ -86,17 +90,18 @@ class _SortDropdownWState extends State<SortDropdownW> {
     });
   }
 
-  Widget _buildOption(SortType option) {
-    return RadioListTile<SortType>(
-      title: Text(option.title),
-      value: option,
-      groupValue: _selectedOption,
+  Widget _buildBrandOption(String brand) {
+    return RadioListTile<String>(
+      title: Text(brand),
+      value: brand,
+      groupValue: _selectedBrand,
       onChanged: (value) {
         setState(() {
-          _selectedOption = value!;
+          _selectedBrand = value!;
           _removeOverlay();
         });
-        context.read<CatalogBloc>().add(SortingList(sortType: _selectedOption));
+
+        context.read<CatalogBloc>().add(FilterByBrand(brand: _selectedBrand!));
       },
     );
   }
@@ -128,10 +133,10 @@ class _SortDropdownWState extends State<SortDropdownW> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(Icons.sort),
+              const Icon(Icons.directions_car),
               const SizedBox(width: 4.0),
               Text(
-                _selectedOption.title,
+                _selectedBrand!,
                 style: AppTextStyles.mainStyle,
               ),
               const Spacer(),

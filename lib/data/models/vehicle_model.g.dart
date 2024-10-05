@@ -13,6 +13,7 @@ VehicleModel _$VehicleModelFromJson(Map<String, dynamic> json) => VehicleModel(
       quantity: (json['quantity'] as num).toInt(),
       unitPriceCNY: (json['unitPriceCNY'] as num).toInt(),
       totalPriceCNY: (json['totalPriceCNY'] as num).toInt(),
+      image: json['image'] as String,
     );
 
 Map<String, dynamic> _$VehicleModelToJson(VehicleModel instance) =>
@@ -23,16 +24,5 @@ Map<String, dynamic> _$VehicleModelToJson(VehicleModel instance) =>
       'quantity': instance.quantity,
       'unitPriceCNY': instance.unitPriceCNY,
       'totalPriceCNY': instance.totalPriceCNY,
-    };
-
-VehicleListModel _$VehicleListModelFromJson(Map<String, dynamic> json) =>
-    VehicleListModel(
-      vehicles: (json['vehicles'] as List<dynamic>)
-          .map((e) => VehicleListModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
-
-Map<String, dynamic> _$VehicleListModelToJson(VehicleListModel instance) =>
-    <String, dynamic>{
-      'vehicles': instance.vehicles,
+      'image': instance.image,
     };
