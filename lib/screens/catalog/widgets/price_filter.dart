@@ -1,30 +1,42 @@
 import 'package:car_market/components/ui_const.dart';
-import 'package:car_market/domain/config/navigation.dart';
 import 'package:car_market/screens/catalog/bloc/catalog_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SortDropdownW extends StatefulWidget {
-  final SortType selectedSort;
+class PriceFilterDropdownW extends StatefulWidget {
+  final double? minPrice;
+  final double? maxPrice;
 
-  const SortDropdownW({super.key, required this.selectedSort});
+  const PriceFilterDropdownW({
+    super.key,
+    required Function(double?, double?) onTap,
+    this.minPrice,
+    this.maxPrice,
+  }) : _onTap = onTap;
+
+  final Function(double?, double?) _onTap;
 
   @override
-  State<SortDropdownW> createState() => _SortDropdownWState();
+  State<PriceFilterDropdownW> createState() => _PriceFilterDropdownWState();
 }
 
-class _SortDropdownWState extends State<SortDropdownW> {
+class _PriceFilterDropdownWState extends State<PriceFilterDropdownW> {
   OverlayEntry? _overlayEntry;
-  SortType _selectedOption = SortType.defaultOrder;
   bool _isHovered = false;
   bool _isDropdownHovered = false;
+  double? _minPrice;
+  double? _maxPrice;
+
+  final TextEditingController _minPriceController = TextEditingController();
+  final TextEditingController _maxPriceController = TextEditingController();
 
   @override
-  void didUpdateWidget(covariant SortDropdownW oldWidget) {
+  void didUpdateWidget(covariant PriceFilterDropdownW oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.selectedSort != oldWidget.selectedSort) {
+    if (widget.minPrice != oldWidget.minPrice || widget.maxPrice != oldWidget.maxPrice) {
       setState(() {
-        _selectedOption = widget.selectedSort;
+        _minPriceController.text = widget.minPrice?.toString() ?? '';
+        _maxPriceController.text = widget.maxPrice?.toString() ?? '';
       });
     }
   }
@@ -55,13 +67,26 @@ class _SortDropdownWState extends State<SortDropdownW> {
             elevation: 4.0,
             child: Container(
               width: size.width,
+              padding: const EdgeInsets.all(8.0),
               color: Colors.white,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  _buildOption(SortType.defaultOrder),
-                  _buildOption(SortType.priceAscending),
-                  _buildOption(SortType.priceDescending),
+                  _buildPriceInputField('Минимальная цена', _minPriceController),
+                  const SizedBox(height: 8.0),
+                  _buildPriceInputField('Максимальная цена', _maxPriceController),
+                  const SizedBox(height: 8.0),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        _minPrice = double.tryParse(_minPriceController.text);
+                        _maxPrice = double.tryParse(_maxPriceController.text);
+                        _removeOverlay();
+                      });
+                      widget._onTap(_minPrice, _maxPrice);
+                    },
+                    child: const Text('Применить'),
+                  )
                 ],
               ),
             ),
@@ -86,18 +111,14 @@ class _SortDropdownWState extends State<SortDropdownW> {
     });
   }
 
-  Widget _buildOption(SortType option) {
-    return RadioListTile<SortType>(
-      title: Text(option.title),
-      value: option,
-      groupValue: _selectedOption,
-      onChanged: (value) {
-        setState(() {
-          _selectedOption = value!;
-          _removeOverlay();
-        });
-        context.read<CatalogBloc>().add(SortingList(sortType: _selectedOption));
-      },
+  Widget _buildPriceInputField(String label, TextEditingController controller) {
+    return TextField(
+      controller: controller,
+      keyboardType: TextInputType.number,
+      decoration: InputDecoration(
+        labelText: label,
+        border: OutlineInputBorder(),
+      ),
     );
   }
 
@@ -128,10 +149,10 @@ class _SortDropdownWState extends State<SortDropdownW> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              const Icon(Icons.sort),
+              const Icon(Icons.filter_alt),
               const SizedBox(width: 4.0),
               Text(
-                _selectedOption.title,
+                'Фильтр по цене',
                 style: AppTextStyles.mainStyle,
               ),
               const Spacer(),
@@ -141,5 +162,12 @@ class _SortDropdownWState extends State<SortDropdownW> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _minPriceController.dispose();
+    _maxPriceController.dispose();
+    super.dispose();
   }
 }

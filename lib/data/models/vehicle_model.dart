@@ -10,6 +10,7 @@ class VehicleModel {
   final int quantity;
   final int unitPriceCNY;
   final int totalPriceCNY;
+  final String image;
 
   VehicleModel({
     required this.serialNumber,
@@ -18,18 +19,9 @@ class VehicleModel {
     required this.quantity,
     required this.unitPriceCNY,
     required this.totalPriceCNY,
+    required this.image,
   });
 
   factory VehicleModel.fromJson(Map<String, dynamic> json) => _$VehicleModelFromJson(json);
   Map<String, dynamic> toJson() => _$VehicleModelToJson(this);
-}
-
-@JsonSerializable()
-class VehicleListModel {
-  final List<VehicleListModel> vehicles;
-
-  VehicleListModel({required this.vehicles});
-
-  factory VehicleListModel.fromJson(Map<String, dynamic> json) => _$VehicleListModelFromJson(json);
-  Map<String, dynamic> toJson() => _$VehicleListModelToJson(this);
 }

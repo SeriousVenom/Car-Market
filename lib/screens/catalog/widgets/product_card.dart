@@ -3,7 +3,11 @@ import 'package:car_market/domain/config/localization.dart';
 import 'package:flutter/material.dart';
 
 class ProductCardW extends StatelessWidget {
-  const ProductCardW({super.key});
+  const ProductCardW({super.key, required this.title, required this.price, required this.image});
+
+  final String title;
+  final int price;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +18,20 @@ class ProductCardW extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.network('https://imgd.aeplcdn.com/600x337/n/cw/ec/139651/curvv-exterior-right-front-three-quarter.jpeg?isig=0&q=80'),
-            Text('251781 ¥', style: AppTextStyles.boldStyle),
-            Text('BYD Song L EV', style: AppTextStyles.mainStyle),
+            SizedBox(
+              height: 150,
+              width: double.infinity,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.asset(
+                  image,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            const SizedBox(height: 14.0),
+            Text('$price ¥', style: AppTextStyles.boldStyle),
+            Text(title, style: AppTextStyles.mainStyle),
             //Отзывы и рейтинг - оставить на потом
             // Row(
             //   mainAxisSize: MainAxisSize.min,
@@ -34,7 +49,7 @@ class ProductCardW extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text(AppLocalization.makeOrder),
+                child: const Text(AppLocalization.makeOrder),
               ),
             )
           ],

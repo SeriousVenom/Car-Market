@@ -6,7 +6,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 251781,
-      "totalPriceCNY": 251781
+      "totalPriceCNY": 251781,
+      "image": "assets/images/BYD Song L EV.jpg"
     },
     {
       "serialNumber": 2,
@@ -14,7 +15,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 125670,
-      "totalPriceCNY": 125670
+      "totalPriceCNY": 125670,
+      "image": "assets/images/BYD Yuan PLUS.jpg"
     },
     {
       "serialNumber": 3,
@@ -22,7 +24,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 108656,
-      "totalPriceCNY": 108656
+      "totalPriceCNY": 108656,
+      "image": "assets/images/BYD Yuan UP.jpg"
     },
     {
       "serialNumber": 4,
@@ -30,7 +33,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 215850,
-      "totalPriceCNY": 215850
+      "totalPriceCNY": 215850,
+      "image": "assets/images/BMW IX1.jpg"
     },
     {
       "serialNumber": 5,
@@ -38,7 +42,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 291516,
-      "totalPriceCNY": 291516
+      "totalPriceCNY": 291516,
+      "image": "assets/images/BMW IX3.jpg"
     },
     {
       "serialNumber": 6,
@@ -46,7 +51,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 387020,
-      "totalPriceCNY": 387020
+      "totalPriceCNY": 387020,
+      "image": "assets/images/Benz EQE SUV.jpg"
     },
     {
       "serialNumber": 7,
@@ -54,7 +60,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 259989,
-      "totalPriceCNY": 259989
+      "totalPriceCNY": 259989,
+      "image": "assets/images/Benz EQB.jpg"
     },
     {
       "serialNumber": 8,
@@ -62,7 +69,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 207943,
-      "totalPriceCNY": 207943
+      "totalPriceCNY": 207943,
+      "image": "assets/images/Benz EQA.jpg"
     },
     {
       "serialNumber": 9,
@@ -70,7 +78,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 130675,
-      "totalPriceCNY": 130675
+      "totalPriceCNY": 130675,
+      "image": "assets/images/Toyota bZ3.jpg"
     },
     {
       "serialNumber": 10,
@@ -78,7 +87,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 170430,
-      "totalPriceCNY": 170430
+      "totalPriceCNY": 170430,
+      "image": "assets/images/Nissan X-Trail.jpg"
     },
     {
       "serialNumber": 11,
@@ -86,7 +96,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 148791,
-      "totalPriceCNY": 148791
+      "totalPriceCNY": 148791,
+      "image": "assets/images/Nissan ARIYA.jpg"
     },
     {
       "serialNumber": 12,
@@ -94,7 +105,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 256285,
-      "totalPriceCNY": 256285
+      "totalPriceCNY": 256285,
+      "image": "assets/images/Li L6.jpg"
     },
     {
       "serialNumber": 13,
@@ -102,7 +114,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 325846,
-      "totalPriceCNY": 325846
+      "totalPriceCNY": 325846,
+      "image": "assets/images/Li L8.jpg"
     },
     {
       "serialNumber": 14,
@@ -110,7 +123,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 548042,
-      "totalPriceCNY": 548042
+      "totalPriceCNY": 548042,
+      "image": "assets/images/Li MEGA.jpg"
     },
     {
       "serialNumber": 15,
@@ -118,7 +132,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 276003,
-      "totalPriceCNY": 276003
+      "totalPriceCNY": 276003,
+      "image": "assets/images/Zeekr 001.jpg"
     },
     {
       "serialNumber": 16,
@@ -126,7 +141,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 234867,
-      "totalPriceCNY": 234867
+      "totalPriceCNY": 234867,
+      "image": "assets/images/Zeekr 007.jpg"
     },
     {
       "serialNumber": 17,
@@ -134,7 +150,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 279906,
-      "totalPriceCNY": 279906
+      "totalPriceCNY": 279906,
+      "image": "assets/images/Zeekr 7X.jpg"
     },
     {
       "serialNumber": 18,
@@ -142,7 +159,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 283409,
-      "totalPriceCNY": 283409
+      "totalPriceCNY": 283409,
+      "image": "assets/images/Tesla Model 3.jpg"
     },
     {
       "serialNumber": 19,
@@ -150,7 +168,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 302426,
-      "totalPriceCNY": 302426
+      "totalPriceCNY": 302426,
+      "image": "assets/images/Tesla Model Y.jpg"
     },
     {
       "serialNumber": 20,
@@ -158,7 +177,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 213336,
-      "totalPriceCNY": 213336
+      "totalPriceCNY": 213336,
+      "image": "assets/images/VW ID.4 X.jpg"
     },
     {
       "serialNumber": 21,
@@ -166,7 +186,8 @@
       "exteriorColor": "White",
       "quantity": 1,
       "unitPriceCNY": 234867,
-      "totalPriceCNY": 234867
+      "totalPriceCNY": 234867,
+      "image": "assets/images/VW ID.6 CROZZ.jpg"
     }
   ]
 }
