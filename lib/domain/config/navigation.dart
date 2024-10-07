@@ -16,43 +16,39 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       name: 'home',
       path: '/home',
-      builder: (context, state) => BlocProvider(
-        create: (context) => HomeBloc()..add(const HomeInitEvent()),
-        child: const HomeScreen(),
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: BlocProvider(
+          create: (context) => HomeBloc()..add(const HomeInitEvent()),
+          child: const HomeScreen(),
+        ),
       ),
     ),
     GoRoute(
       name: 'catalog',
       path: '/catalog',
-      builder: (context, state) => BlocProvider(
-        create: (context) => CatalogBloc(mainRepository: GetIt.I<MainRepository>())..add(const CatalogInitEvent()),
-        child: const CatalogScreen(),
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: BlocProvider(
+          create: (context) => CatalogBloc(mainRepository: GetIt.I<MainRepository>())..add(const CatalogInitEvent()),
+          child: const CatalogScreen(),
+        ),
       ),
     ),
     GoRoute(
       name: 'product',
       path: '/product',
-      builder: (context, state) => BlocProvider(
-        create: (context) => ProductBloc(mainRepository: GetIt.I<MainRepository>())..add(const ProductInitEvent()),
-        child: ProductScreen(vehicle: state.extra as VehicleModel),
+      pageBuilder: (context, state) => NoTransitionPage(
+        child: BlocProvider(
+          create: (context) => ProductBloc(mainRepository: GetIt.I<MainRepository>())..add(ProductInitEvent(vehicle: state.extra as VehicleModel)),
+          child: const ProductScreen(),
+        ),
       ),
     ),
-    // GoRoute(
-    //   name: 'auth',
-    //   path: '/auth',
-    //   builder: (context, state) => BlocProvider(
-    //     create: (context) => AuthBloc(
-    //       authRepository: GetIt.I<AuthRepository>(),
-    //     ),
-    //     child: const AuthScreen(),
-    //   ),
-    // ),
   ],
 );
 
 class AppNavigation {
   static void back() => appRouter.pop();
   static void toHome() => appRouter.pushReplacement('/home');
-  static void toCatalog() => appRouter.push('/catalog');
-  static void toProduct(VehicleModel vehicle) => appRouter.push('/product', extra: vehicle);
+  static void toCatalog() => appRouter.go('/catalog');
+  static void toProduct(VehicleModel vehicle) => appRouter.go('/product', extra: vehicle);
 }

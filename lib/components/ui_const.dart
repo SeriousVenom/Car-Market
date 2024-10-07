@@ -12,4 +12,17 @@ abstract final class AppTextStyles {
     color: Colors.black,
     fontWeight: FontWeight.w700,
   );
+
+  static const TextStyle appBarButton = TextStyle(
+    fontFamily: _fontFamily,
+    color: Colors.black,
+    fontSize: 18.0,
+    // fontWeight: FontWeight.w500,
+  );
+
+  static TextStyle descriptionText = TextStyle(
+    fontFamily: _fontFamily,
+    color: Colors.grey.shade700,
+    // fontWeight: FontWeight.w500,
+  );
 }

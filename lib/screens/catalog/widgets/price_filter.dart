@@ -3,6 +3,9 @@ import 'package:car_market/screens/catalog/bloc/catalog_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:flutter/material.dart';
+import 'package:responsive_framework/responsive_framework.dart';
+
 class PriceFilterDropdownW extends StatefulWidget {
   final double? minPrice;
   final double? maxPrice;
@@ -138,7 +141,14 @@ class _PriceFilterDropdownWState extends State<PriceFilterDropdownW> {
         });
       },
       child: Container(
-        width: 300.0,
+        width: ResponsiveValue<double>(
+          context,
+          defaultValue: 300.0,
+          conditionalValues: [
+            Condition.smallerThan(name: TABLET, value: 200.0),
+            Condition.largerThan(name: DESKTOP, value: 400.0),
+          ],
+        ).value!,
         decoration: BoxDecoration(
           color: _isHovered ? Colors.grey[300] : Colors.grey[200],
           borderRadius: BorderRadius.circular(4.0),

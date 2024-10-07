@@ -1,179 +1,256 @@
 import 'package:car_market/components/widgets/app_bar.dart';
+import 'package:car_market/components/widgets/footer.dart';
 import 'package:car_market/data/models/vehicle_model.dart';
+import 'package:car_market/domain/config/localization.dart';
+import 'package:car_market/generated/assets.dart';
 import 'package:car_market/screens/product/bloc/product_bloc.dart';
+import 'package:car_market/screens/product/widgets/purchase_type.dart';
 import 'package:flutter/material.dart';
 import 'package:car_market/components/ui_const.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductScreen extends StatelessWidget {
-  final VehicleModel vehicle;
-
-  const ProductScreen({super.key, required this.vehicle});
+  const ProductScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MainAppBar(
-        title: vehicle.name,
-        backButton: true,
-      ),
-      body: BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
-        return SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Vehicle Image and Info
-              Center(
-                child: Column(
-                  children: [
-                    Image.network(
-                      vehicle.image,
-                      height: 200,
-                      fit: BoxFit.cover,
-                    ),
-                    const SizedBox(height: 16.0),
-                    Text(
-                      "${vehicle.unitPriceCNY} ¥ - ${vehicle.totalPriceCNY} ¥",
-                      style: AppTextStyles.boldStyle.copyWith(fontSize: 24),
-                    ),
-                    const SizedBox(height: 8.0),
-                    Text(
-                      "${vehicle.description}",
-                      style: AppTextStyles.mainStyle.copyWith(fontSize: 16),
-                    ),
-                  ],
-                ),
+    return BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
+      return Scaffold(
+        appBar: MainAppBar(
+          title: state.vehicle?.name ?? '',
+          backButton: true,
+        ),
+        body: switch (state.status) {
+          ProductStatus.loading => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ProductStatus.inProgress => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 128.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: 64.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const ImageGalleryWidget(),
+                      const SizedBox(width: 24.0),
+                      ProductDescriptionW(),
+                      const SizedBox(width: 24.0),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Card(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        '${state.vehicle?.totalPriceCNY} ¥',
+                                        style: AppTextStyles.boldStyle.copyWith(fontSize: 18.0),
+                                      ),
+                                      const SizedBox(width: 8.0),
+                                      const PurchaseTypeChoiceW(),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 12.0),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                                    child: Text(
+                                      state.purchaseType == PurchaseType.onUs ? AppLocalization.makeOrderByUs : AppLocalization.makeOrderByYou,
+                                      style: AppTextStyles.mainStyle,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12.0),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: const Text(
+                                      AppLocalization.makeOrder,
+                                      style: TextStyle(fontSize: 22),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 12.0),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
               ),
-              const SizedBox(height: 32.0),
-              // Vehicle details
-              _buildDetailsSection(),
-              const SizedBox(height: 32.0),
-              // Why choose us section
-              _buildWhyChooseUsSection(),
-              const SizedBox(height: 32.0),
-              // Related Products
-              _buildRelatedProductsSection(),
-            ],
-          ),
-        );
-      }),
-    );
-  }
-
-  Widget _buildDetailsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Детали',
-          style: AppTextStyles.boldStyle.copyWith(fontSize: 20),
-        ),
-        const SizedBox(height: 16.0),
-        _buildDetailRow('Привод', vehicle.driveType ?? '---'),
-        _buildDetailRow('Потребление энергии', "${vehicle.energyConsumption ?? '---'} кВт/ч"),
-        _buildDetailRow('Мощность', "${vehicle.horsepower ?? '---'} л.с."),
-        _buildDetailRow('Поколение', vehicle.generation ?? '---'),
-        _buildDetailRow('Модель', vehicle.model ?? '---'),
-        _buildDetailRow('Двигатель', vehicle.engine ?? '---'),
-        _buildDetailRow('Год', vehicle.year.toString() ?? '---'),
-        _buildDetailRow('Коробка', vehicle.transmission ?? '---'),
-        _buildDetailRow('Максимальная скорость', "${vehicle.maxSpeed ?? '---'} км/ч"),
-        _buildDetailRow('Кузов', vehicle.bodyType ?? '---'),
-        _buildDetailRow('Цвет', vehicle.color ?? '---'),
-      ],
-    );
-  }
-
-  Widget _buildDetailRow(String title, String value) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(title, style: AppTextStyles.mainStyle),
-          Text(value, style: AppTextStyles.mainStyle),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildWhyChooseUsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Почему стоит покупать авто из Китая с нами',
-          style: AppTextStyles.boldStyle.copyWith(fontSize: 20),
-        ),
-        const SizedBox(height: 16.0),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: const [
-            IconWithTextWidget(
-              icon: Icons.document_scanner,
-              text: 'Официальный договор',
             ),
-            IconWithTextWidget(
-              icon: Icons.car_rental,
-              text: 'Цены из Китая',
+          ProductStatus.failure => const Center(
+              child: Text('Error'),
             ),
-            IconWithTextWidget(
-              icon: Icons.person,
-              text: 'Фото в паспорте',
-            ),
-            IconWithTextWidget(
-              icon: Icons.support_agent,
-              text: 'Полное сопровождение',
-            ),
-          ],
-        ),
-      ],
-    );
+        },
+      );
+    });
   }
+}
 
-  Widget _buildRelatedProductsSection() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Похожие товары',
-          style: AppTextStyles.boldStyle.copyWith(fontSize: 20),
-        ),
-        const SizedBox(height: 16.0),
-        // Add related products here
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
+class PurchasingProcessW extends StatelessWidget {
+  const PurchasingProcessW({
+    super.key,
+    required this.carTitle,
+  });
+
+  final String carTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration:
+          BoxDecoration(color: Colors.transparent, border: Border.all(color: Colors.black, width: 1.5), borderRadius: BorderRadius.circular(12.0)),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SelectableText.rich(
+            TextSpan(
               children: [
-                Image.network(vehicle.image, height: 100, fit: BoxFit.cover),
-                const SizedBox(height: 8.0),
-                Text(vehicle.name, style: AppTextStyles.mainStyle),
-                Text("Цена: ${vehicle.unitPriceCNY} ¥"),
+                TextSpan(text: 'Процесс покупки $carTitle из Китая\n', style: AppTextStyles.boldStyle),
+                const TextSpan(text: '1. Заключаем официальный договор на услугу подбора авто;\n'),
+                const TextSpan(text: '2. Подбираем автомобиль с учетом выбранных вами критериев\n (характеристик) и бюджета; \n'),
+                const TextSpan(text: '3. Выкупаем авто;\n'),
+                const TextSpan(text: '4. В зависимости от способа покупки доставляем вам авто;\n'),
+                const TextSpan(text: '5. Доставляем машину в Россию;\n'),
+                const TextSpan(text: '6. Поздравляем — вы владелец нового авто из Китая!\n'),
               ],
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
 
-class IconWithTextWidget extends StatelessWidget {
-  final IconData icon;
-  final String text;
-
-  const IconWithTextWidget({super.key, required this.icon, required this.text});
+class ProductDescriptionW extends StatelessWidget {
+  const ProductDescriptionW({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon, size: 32.0, color: Colors.black),
-        const SizedBox(height: 8.0),
-        Text(text, textAlign: TextAlign.center, style: AppTextStyles.mainStyle),
-      ],
+    return DecoratedBox(
+      decoration:
+          BoxDecoration(color: Colors.transparent, border: Border.all(color: Colors.black, width: 1.5), borderRadius: BorderRadius.circular(12.0)),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SelectableText.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(text: 'Модель автомобиля\n'),
+                    const TextSpan(text: 'Модельный год\n'),
+                    const TextSpan(text: 'Двигатель\n'),
+                    const TextSpan(text: 'Объем двигателя (л)\n'),
+                    const TextSpan(text: 'Мощность двигателя (л.с.)\n'),
+                    const TextSpan(text: 'КПП\n'),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 18.0),
+              SelectableText.rich(
+                TextSpan(
+                  children: [
+                    const TextSpan(text: 'Tiggo 4 Pro\n'),
+                    const TextSpan(text: '2024\n'),
+                    const TextSpan(text: 'бензин\n'),
+                    const TextSpan(text: '1.5\n'),
+                    const TextSpan(text: '113 лс\n'),
+                    const TextSpan(text: 'механическая\n'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class ImageGalleryWidget extends StatefulWidget {
+  const ImageGalleryWidget({super.key});
+
+  @override
+  State<ImageGalleryWidget> createState() => _ImageGalleryWidgetState();
+}
+
+class _ImageGalleryWidgetState extends State<ImageGalleryWidget> {
+  int _selectedImageIndex = 0;
+
+  final List<String> _images = [
+    Assets.imagesBenzEQA,
+    Assets.imagesBMWIX1,
+    Assets.imagesLiL6,
+    Assets.imagesVWID4X,
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2.0,
+      child: Padding(
+        padding: const EdgeInsets.all(0.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: 100,
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: _images.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _selectedImageIndex = index;
+                      });
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Opacity(
+                        opacity: _selectedImageIndex == index ? 1.0 : 0.7,
+                        child: SizedBox(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.asset(_images[index]),
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            Center(
+              child: SizedBox(
+                height: 400,
+                width: 550,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    _images[_selectedImageIndex],
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

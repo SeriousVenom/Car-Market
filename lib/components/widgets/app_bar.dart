@@ -16,20 +16,21 @@ class MainAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         const TextButton(
           onPressed: AppNavigation.toHome,
-          child: Text(AppLocalization.mainTitle, style: AppTextStyles.mainStyle),
+          child: Text(AppLocalization.mainTitle, style: AppTextStyles.appBarButton),
         ),
         TextButton(
           onPressed: () {},
-          child: const Text(AppLocalization.aboutUsTitle, style: AppTextStyles.mainStyle),
+          child: const Text(AppLocalization.aboutUsTitle, style: AppTextStyles.appBarButton),
         ),
         const TextButton(
           onPressed: AppNavigation.toCatalog,
-          child: Text(AppLocalization.catalogTitle, style: AppTextStyles.mainStyle),
+          child: Text(AppLocalization.catalogTitle, style: AppTextStyles.appBarButton),
         ),
         TextButton(
           onPressed: () {},
-          child: const Text(AppLocalization.contactUsTitle, style: AppTextStyles.mainStyle),
+          child: const Text(AppLocalization.contactUsTitle, style: AppTextStyles.appBarButton),
         ),
+        const SizedBox(width: 64.0),
       ],
     );
   }
