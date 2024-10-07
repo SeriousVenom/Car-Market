@@ -4,9 +4,6 @@ import 'package:car_market/screens/catalog/bloc/catalog_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter/material.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-
 class BrandFilterDropdownW extends StatefulWidget {
   final String selectedBrand;
 
@@ -125,14 +122,7 @@ class _BrandFilterDropdownWState extends State<BrandFilterDropdownW> {
         });
       },
       child: Container(
-        width: ResponsiveValue<double>(
-          context,
-          defaultValue: 300.0,
-          conditionalValues: [
-            Condition.smallerThan(name: TABLET, value: 200.0),
-            Condition.largerThan(name: DESKTOP, value: 400.0),
-          ],
-        ).value!,
+        width: 300.0,
         decoration: BoxDecoration(
           color: _isHovered ? Colors.grey[300] : Colors.grey[200],
           borderRadius: BorderRadius.circular(4.0),
